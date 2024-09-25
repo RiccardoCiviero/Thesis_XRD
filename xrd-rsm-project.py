@@ -146,7 +146,7 @@ print('saving to '+outfile)
 with open(outfile, 'w') as datf:
     datf.write ('# filename: ' + args.datfile + '\n')
     datf.write ('# reflection: (004)\n')
-    datf.write ('# type: Projection of {} {} scans\n'.format(endnum-startnum, scantype))
+    datf.write ('# type: Projection of {} {} scans\n'.format(endnum-startnum, scantype + " (rotated) "))
     datf.write ('# x-axis: {} \n'.format(scantype))
     datf.write ('# \n')
     datf.write ('# Omega\t2Theta\tPhi  \tChi   \tX    \tY    \tZ    \tq_para\tq_perp\tIntensity\n')

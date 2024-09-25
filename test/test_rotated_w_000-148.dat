@@ -1,6 +1,6 @@
-# filename: test_rotated.dat
+# filename: test/test_rotated.dat
 # reflection: (004)
-# type: Projection of 148 omega scans
+# type: Projection of 148 omega (rotated)  scans
 # x-axis: omega 
 # 
 # Omega	2Theta	Phi  	Chi   	X    	Y    	Z    	q_para	q_perp	Intensity
