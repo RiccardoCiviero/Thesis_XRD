@@ -21,6 +21,7 @@ parser.add_argument("-e", "--end", nargs=1,
 parser.add_argument('datfile', help=".dat rsm filename")
 args = parser.parse_args()
 datfile=args.datfile
+filename = datfile.split('/')[-1]
 
 datre = re.compile('.dat')
 
@@ -144,7 +145,7 @@ else:
 print('saving to '+outfile)
 
 with open(outfile, 'w') as datf:
-    datf.write ('# filename: ' + args.datfile + '\n')
+    datf.write ('# filename: ' + filename + '\n')
     datf.write ('# reflection: (004)\n')
     datf.write ('# type: Projection of {} {} scans\n'.format(endnum-startnum, scantype + " (rotated) "))
     datf.write ('# x-axis: {} \n'.format(scantype))

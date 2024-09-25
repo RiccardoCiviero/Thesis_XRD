@@ -14,4 +14,6 @@ Tasks:
 
 1. rsms are explicit in their filenames. 1.5deg is the 004 while 2.0deg is the 224. The E4 is the annealed one while usually the E5 is as grown 
 
-2. Almost done (i hope) maybe a switch to poetry would be nice
+2. Almost done (i hope) maybe a switch to poetry would be nice. Done some changes to file headers and stuff
+
+3. Done for a couple of files, will now work on a batch script so that it is 
