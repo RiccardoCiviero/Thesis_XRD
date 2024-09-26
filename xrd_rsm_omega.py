@@ -9,12 +9,6 @@ import re
 import numpy as np
 
 parser = argparse.ArgumentParser(description="Rotate the .dat file so that every line is a omega scan")
-parser.add_argument("-s", "--start", nargs=1,
-                  dest="startnum", default=[0], type=int,
-                  help="which scan to start with")
-parser.add_argument("-e", "--end", nargs=1,
-                  dest="endnum", default=[200], type=int,
-                  help="which scan to end with")
 parser.add_argument("-d", "-destination", default = "", type = str, dest ="des", help="Destination folder")
 parser.add_argument('datfile', help=".dat rsm filename")
 args = parser.parse_args()
