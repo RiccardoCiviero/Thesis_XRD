@@ -41,9 +41,7 @@ import argparse
 import math
 import os.path
 import re
-import string
 import sys
-import time
 from subprocess import call
 
 def grep(string,mylist):

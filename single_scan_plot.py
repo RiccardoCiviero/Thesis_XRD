@@ -6,11 +6,8 @@
 # Author: Riccardo Civiero
 
 import argparse
-import math
 import os.path
 import re
-import string
-import sys
 import numpy as np
 import matplotlib.pyplot as plt
 

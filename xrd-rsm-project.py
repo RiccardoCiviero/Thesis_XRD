@@ -4,11 +4,8 @@
 # Script to extract some of the scans from an rsm dat file and collapse them into a single .dat file
 
 import argparse
-import math
 import os.path
 import re
-import string
-import sys
 import numpy as np
 
 parser = argparse.ArgumentParser(description="Extract some of the scans from an rsm .dat file and collapse them into a single  .dat file")
@@ -18,10 +15,16 @@ parser.add_argument("-s", "--start", nargs=1,
 parser.add_argument("-e", "--end", nargs=1,
                   dest="endnum", default=[200], type=int,
                   help="which scan to end with")
+parser.add_argument("-d", "-destination", default = "", type = str, dest ="des", help="Destination folder")
 parser.add_argument('datfile', help=".dat rsm filename")
 args = parser.parse_args()
 datfile=args.datfile
 filename = datfile.split('/')[-1]
+
+if args.des != "":
+    if not os.path.isdir(args.des):
+        print("Destination directory {} does not exist!".format(args.des))
+        exit(1)
 
 datre = re.compile('.dat')
 
@@ -138,9 +141,9 @@ if scans < 10:
 out_string=('_{}-{}'.format(str(startnum).zfill(zfiller),str(endnum).zfill(zfiller)))
 #print(out_string)
 if scantype == "omega":
-    outfile = datre.sub('_w'+out_string+'.dat', datfile)
+    outfile = datre.sub('_w'+out_string+'.dat', args.des + "/" + filename)
 else:
-    outfile = datre.sub('_w'+out_string+'.dat', datfile)
+    outfile = datre.sub('_w'+out_string+'.dat', args.des + "/" + filename)
 
 print('saving to '+outfile)
 

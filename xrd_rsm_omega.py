@@ -4,11 +4,8 @@
 # Script to "rotate" and rsm dat file so that it's a list of omega scans instead of omega--2theta scans
 
 import argparse
-import math
 import os.path
 import re
-import string
-import sys
 import numpy as np
 
 parser = argparse.ArgumentParser(description="Rotate the .dat file so that every line is a omega scan")
@@ -18,10 +15,16 @@ parser.add_argument("-s", "--start", nargs=1,
 parser.add_argument("-e", "--end", nargs=1,
                   dest="endnum", default=[200], type=int,
                   help="which scan to end with")
+parser.add_argument("-d", "-destination", default = "", type = str, dest ="des", help="Destination folder")
 parser.add_argument('datfile', help=".dat rsm filename")
 args = parser.parse_args()
 datfile=args.datfile
 filename = datfile.split('/')[-1]
+
+if args.des != "":
+    if not os.path.isdir(args.des):
+        print("Destination directory {} does not exist!".format(args.des))
+        exit(1)
 
 datre = re.compile('.dat')
 
@@ -94,7 +97,7 @@ while i<len(intens):
 
 outarray=datarray
 
-outfile = datre.sub('_w-scans.dat', datfile)
+outfile = datre.sub('_w-scans.dat', args.des + "/" + filename)
 print('saving to '+outfile)
 
 with open(outfile, 'w') as datf:
