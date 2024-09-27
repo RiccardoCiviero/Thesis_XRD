@@ -65,8 +65,43 @@ else:
     angle = ttheta # ??? Not really sure will check if ever needed
     angleLabel = r"$\omega$ - $2\theta$"
 
-plt.plot(angle, intens)
-plt.xlabel(angleLabel)
-plt.ylabel("Intensity")
-plt.title(datfile)
+peak = np.argmax(intens)
+
+
+# plt.plot(angle[0:np.size(angle)], intens[0:np.size(angle)], label = "{}".format(np.argmax(intens[0:np.size(angle)//2])))
+# plt.legend()
+# plt.show()
+
+delta_angle = angle - angle[peak]
+
+
+# cut_intens = intens[delta_angle > 0]
+# delta_angle = delta_angle[delta_angle > 0]
+
+
+# coefficients=np.polyfit(np.log(delta_angle)[9:21], np.log(cut_intens)[9:21], 1)
+# polynomial=np.poly1d(coefficients)
+# fit = lambda x: np.e**(coefficients[0]*x + coefficients[1])
+
+
+# plt.loglog((delta_angle), (cut_intens), '+', label = "Scan")
+# plt.loglog(delta_angle, fit(np.log(delta_angle)), label = "Fit slope = " + str(coefficients[0]))
+# plt.xlabel(r"$\Delta$" + angleLabel)
+# plt.ylabel("Intensity")
+# plt.title(datfile)
+# plt.legend()
+# plt.show()
+
+from scipy.optimize import curve_fit
+
+i_peak = np.sum(intens)
+
+f = lambda x, A, B: A * i_peak/(x**3)
+
+popt, _ = curve_fit(f, delta_angle, intens)
+
+print(popt)
+
+plt.plot(delta_angle, intens, '+')
+plt.plot(delta_angle, f(angle, *popt))
 plt.show()
